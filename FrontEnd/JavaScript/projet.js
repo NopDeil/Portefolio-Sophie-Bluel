@@ -1,32 +1,46 @@
-// Récupérer les données de l'API
-fetch("http://localhost:5678/api/works")
-  .then(response => response.json())  // Convertir la réponse en JSON
-  .then(projet => {
-    console.log(projet);  // Vérifier les données récupérées
+// Fonction pour récupérer les données de l'API
+async function fetchWorks() {
+  try {
+    const response = await fetch("http://localhost:5678/api/works");
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    // Convertir la réponse en JSON
+    const works = await response.json();
+    return works;
+    // gestion des erreurs
+  } catch (error) {
+    console.error("Erreur lors de la récupération des projets:", error);
+    throw error; // Rethrow pour permettre la gestion de l'erreur dans la fonction displayWorks
+  }
+}
 
-    // Sélectionner l'élément de la galerie
+// Fonction pour ajouter dynamiquement les projets à la page
+async function displayWorks() {
+  try {
+    const works = await fetchWorks();
+      // Sélectionner l'élément de la galerie
     const gallery = document.querySelector(".gallery");
-
-    // Boucler à travers chaque projet pour créer les éléments HTML
-    for (let i = 0; i < projet.length; i++) {
+      // Boucler à travers chaque projet pour créer les éléments HTML
+    for (let i = 0; i < works.length; i++) {
+        // Création l'élément figure 
       const figure = document.createElement("figure");
-
-      // Créer l'élément img et définir sa source
+       // Création l'élément img et définir sa source
       const imageProjet = document.createElement("img");
-      imageProjet.src = projet[i].imageUrl;
-
-      // Créer l'élément figcaption et définir son texte
+      imageProjet.src = works[i].imageUrl;
+    //   Création de l'élément figcaption et définition du texte
       const figcaption = document.createElement("figcaption");
-      figcaption.innerText = projet[i].title;
-
-      // Ajouter img et figcaption à figure
+      figcaption.innerText = works[i].title;
+        // Ajouter img et figcaption à figure
       figure.appendChild(imageProjet);
       figure.appendChild(figcaption);
-
-      // Ajouter figure à la galerie
+       // Ajouter figure à la galerie
       gallery.appendChild(figure);
     }
-  })
-  .catch(error => {
-    console.error('Erreur lors de la récupération des projets :', error);
-  });
+    // gestion des erreurs
+  } catch (error) {
+    console.error("Erreur lors de l'affichage des projets:", error);
+  }
+}
+
+displayWorks();
