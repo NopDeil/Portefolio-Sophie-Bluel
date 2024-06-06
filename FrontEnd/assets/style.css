@@ -113,6 +113,11 @@ ol,
 ul {
   list-style: none;
 }
+
+a{
+  text-decoration: none ;
+}
+
 blockquote,
 q {
   quotes: none;
@@ -143,6 +148,11 @@ header {
 
 header nav ul li img {
   width: 20px;
+}
+
+header nav ul li a:hover {
+
+  color: black;
 }
 
 section {
