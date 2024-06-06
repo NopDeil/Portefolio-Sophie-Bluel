@@ -228,7 +228,7 @@ li:hover {
   margin-bottom: 1em;
 }
 
-button {
+#portfolio button {
   font-family: "Syne";
   color: #1d6154;
   border: 1px solid #1d6154;
@@ -239,12 +239,18 @@ button {
   padding: 5px 20px 5px 20px;
   margin-right: 10px;
   font-size: large;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
 }
 
 #portfolio button:hover {
 	color: white;
 	background-color: #1d6154;
-	cursor: pointer;
+}
+
+ .button-active {
+	color: white !important;
+	background-color: #1d6154 !important;
 }
 
 .gallery {

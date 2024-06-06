@@ -29,8 +29,7 @@ async function displayWorks() {
 // Fonction pour ajouter dynamiquement les projets à la page
 function createWorks(work) {
   // Sélectionner l'élément de la galerie
-  const gallery = document.querySelector(".gallery");
-  
+
   // Création l'élément figure
   const figure = document.createElement("figure");
   figure.dataset.categoryId = work.categoryId;
@@ -77,9 +76,12 @@ async function displayCategories() {
     // Sélectionner l'élément de la galerie
     const filters = document.getElementById("filters");
     // Boucler à travers chaque catégorie pour créer les éléments HTML
-    categories?.forEach((category) => {
+    categories?.forEach((category, index) => {
       // Création d'un élément bouton
       let btn = document.createElement("button");
+      if (index === 0) {
+        btn.classList.add("button-active");
+      }
       // ajout du nom des différentes catégories dans ce bouton
       btn.innerText = category.name;
       // Ajout de l'id correspondant à chaque catégorie
@@ -98,15 +100,20 @@ async function displayCategories() {
 async function filterProject(event) {
   console.log(event.target);
   const filterWorks = await fetchWorks();
-  gallery.innerHTML=" ";  
+  gallery.innerHTML = "";
   let categoryTargetId = event.target.dataset.categoryId;
-  
+
+  document.querySelectorAll("#portfolio button").forEach((element) => {
+    element.classList.remove("button-active");
+  });
+  event.target.classList.add("button-active");
+
   console.log(categoryTargetId);
   if (categoryTargetId !== "") {
     filterTriWorks = filterWorks.filter((work) => {
       return work.categoryId == categoryTargetId;
     });
-    console.log(filterTriWorks)
+    console.log(filterTriWorks);
     filterTriWorks.forEach((work) => {
       createWorks(work);
     });
