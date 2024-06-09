@@ -114,9 +114,10 @@ ul {
   list-style: none;
 }
 
-a{
-    text-decoration: none ;
-}  
+a {
+  text-decoration: none;
+  color: black;
+}
 
 blockquote,
 q {
@@ -143,11 +144,16 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  margin: 50px 0;
+  margin: 30px 0 100px;
+  height: 50px;
 }
 
 header nav ul li img {
   width: 20px;
+}
+
+header nav ul li a:hover {
+  color: #b1663c;
 }
 
 section {
@@ -166,7 +172,9 @@ h1 {
 
 h1 > span {
   font-family: "Work Sans";
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 400;
+  padding-top: 5px;
   letter-spacing: 0.1em;
 }
 
@@ -182,12 +190,13 @@ nav ul {
   list-style-type: none;
 }
 nav li {
-  padding: 0 25px;
+  padding: 0px 20px;
   font-size: 1.2em;
+  margin-top: 5px;
 }
 
-li:hover {
-  color: #b1663c;
+.liLogin{
+    font-weight: bold;
 }
 
 button {
@@ -203,10 +212,9 @@ button {
   font-size: large;
 }
 
-
 #login {
   width: 50%;
-  margin: auto;
+  margin: 200px auto;
 }
 #login > * {
   text-align: center;
@@ -235,13 +243,18 @@ button {
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+#login a{
+    text-align: center;
+    text-decoration: underline;
+}
+
 input[type="submit"] {
   font-family: "Syne";
   font-weight: 700;
   color: white;
   background-color: #1d6154;
   margin: 2em auto;
-  width: 180px;
+  width: 200px;
   text-align: center;
   border-radius: 60px;
 }

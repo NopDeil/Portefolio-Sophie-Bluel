@@ -114,8 +114,9 @@ ul {
   list-style: none;
 }
 
-a{
-  text-decoration: none ;
+a {
+  text-decoration: none;
+  color: black;
 }
 
 blockquote,
@@ -143,7 +144,8 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  margin: 50px 0;
+  margin: 30px 0 50px;
+  height: 50px;
 }
 
 header nav ul li img {
@@ -151,8 +153,7 @@ header nav ul li img {
 }
 
 header nav ul li a:hover {
-
-  color: black;
+  color: #b1663c;
 }
 
 section {
@@ -171,7 +172,9 @@ h1 {
 
 h1 > span {
   font-family: "Work Sans";
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 400;
+  padding-top: 5px;
   letter-spacing: 0.1em;
 }
 
@@ -187,13 +190,11 @@ nav ul {
   list-style-type: none;
 }
 nav li {
-  padding: 0 25px;
+  padding: 0px 20px;
   font-size: 1.2em;
+  margin-top: 5px;
 }
 
-li:hover {
-  color: #b1663c;
-}
 #introduction {
   display: flex;
   align-items: center;
@@ -205,18 +206,19 @@ li:hover {
 #introduction img {
   display: block;
   margin: auto;
-  width: 80%;
+  width: 474px;
+  height: 355px;
 }
 
 #introduction article {
   flex: 1;
 }
 #introduction h2 {
-  margin-bottom: 1em;
+  margin-left: 23px;
 }
 
 #introduction p {
-  margin: 2em 12em 2em 0;
+  margin: 30px 79px 0px 25px;
 }
 
 #portfolio {
@@ -244,13 +246,13 @@ li:hover {
 }
 
 #portfolio button:hover {
-	color: white;
-	background-color: #1d6154;
+  color: white;
+  background-color: #1d6154;
 }
 
- .button-active {
-	color: white !important;
-	background-color: #1d6154 !important;
+.button-active {
+  color: white !important;
+  background-color: #1d6154 !important;
 }
 
 .gallery {
@@ -301,7 +303,7 @@ input[type="submit"] {
   color: white;
   background-color: #1d6154;
   margin: 2em auto;
-  width: 180px;
+  width: 200px;
   text-align: center;
   border-radius: 60px;
 }
