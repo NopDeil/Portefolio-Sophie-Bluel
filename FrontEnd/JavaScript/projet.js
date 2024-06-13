@@ -2,6 +2,8 @@
 const gallery = document.querySelector(".gallery");
 displayWorks();
 displayCategories();
+
+connected();
 // Fonction pour récupérer les données de l'API
 async function fetchWorks() {
   try {
@@ -119,5 +121,32 @@ async function filterProject(event) {
     });
   } else {
     displayWorks();
+  }
+}
+
+// Après connexion de l'utilisateur
+
+function connected() {
+  const logout = document.querySelector(".logout");
+  const token = localStorage.getItem("token");
+  const mode = document.querySelector(".mode");
+  const pEdition = document.querySelector(".mode p");
+  const square = document.querySelector(".fa-pen-to-square");
+  const spanText = document.querySelector(".mode p span");
+  const pModal = document.querySelector("#portfolio p");
+  const spanTextModal = document.querySelector("#portfolio p span");
+
+  if (token) {
+    logout.innerText = "logout";
+    logout.addEventListener("click", () => {
+      token = localStorage.removeItem("token");
+      window.location.reload();
+    });
+    mode.classList.add("edition");
+    spanText.textContent = "Mode édition";
+    pEdition.classList.add("pEdition");
+    square.classList.add("square");
+    pModal.classList.add("pModal")
+    spanTextModal.textContent = "Modifier";
   }
 }
