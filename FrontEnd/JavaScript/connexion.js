@@ -20,7 +20,7 @@ async function form_verify() {
   if (req.status !== 200) {
     email.classList.add("inputError");
     password.classList.add("inputError");
-    error.innerHTML = "Erreur dans l’identifiant ou le mot de passe";
+    error.innerHTML = "L’identifiant ou le mot de passe n'est pas valide";
     return;
   }
   if (req.status === 200) {
