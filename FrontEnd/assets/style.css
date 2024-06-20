@@ -492,7 +492,7 @@ footer nav ul {
   font-family: inherit;
   font-size: x-large;
   position: relative;
-  bottom: 15px;
+  bottom: 55px;
 }
 
 .modalPhoto button {
@@ -518,7 +518,7 @@ footer nav ul {
   background-color: lightblue;
   align-items: center;
   position: relative;
-  bottom: 10px;
+  bottom: 60px;
   height: 30%;
   border-radius: 3px;
 }
@@ -547,10 +547,10 @@ footer nav ul {
 .formPhotoModal {
   display: flex;
   flex-direction: column;
-  height: 30%;
+  height: 35%;
   width: 70%;
   position: relative;
-  bottom: 30px;
+  bottom: 80px;
 }
 
 .formPhotoModal label {
@@ -565,10 +565,31 @@ footer nav ul {
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-#selectCategories{
+.formPhotoModal button {
+  position: relative;
+  top: 65px;
+  left: 140px;
+}
+
+.formPhotoModal .ligne{
+  width: 100%;
+  display: flex;
+  border: 1px solid lightgray;
+  position: relative;
+  top: 28px;
+  bottom: 0;
+}
+
+#category{
   height: 50px;
   font-size: 1.2em;
   padding-left: 5px;
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.imgFile{
+  height: 100%;
+  position: absolute;
+  width: 40%;
 }

@@ -128,9 +128,6 @@ async function filterProject(event) {
 }
 
 // Après connexion de l'utilisateur
-
-
-
 function connected() {
   const logout = document.querySelector(".logout");
   const token = localStorage.getItem("token");
@@ -178,14 +175,19 @@ function connected() {
     btnAjoutPhoto.addEventListener("click", () => {
       containerModals.style.display = "none";
       containerAddPhotoModals.style.display = "block";
-    }); 
+    });
 
     displayWorksModal();
-    
-    
-    const containerAddPhotoModals = document.querySelector(".containerAddPhotoModals");
-    const xmarks1 = document.querySelector(".containerAddPhotoModals span .fa-xmark");
-    const leftArrow = document.querySelector(".containerAddPhotoModals span .fa-arrow-left");
+
+    const containerAddPhotoModals = document.querySelector(
+      ".containerAddPhotoModals"
+    );
+    const xmarks1 = document.querySelector(
+      ".containerAddPhotoModals span .fa-xmark"
+    );
+    const leftArrow = document.querySelector(
+      ".containerAddPhotoModals span .fa-arrow-left"
+    );
 
     leftArrow.addEventListener("click", () => {
       containerModals.style.display = "block";
@@ -200,27 +202,89 @@ function connected() {
       if (e.target.className == "containerAddPhotoModals") {
         containerAddPhotoModals.style.display = "none";
       }
-    });
-
-    const fileBtn = document.querySelector(".photoModal .button");
-    fileBtn.addEventListener("click", () => {
+      const fileBtn = document.querySelector(".photoModal .button");
       const fileInput = document.getElementById("fileInput");
-      fileInput.click();
-  });
-  
+      const photoModal = document.querySelector(".photoModal");
+      const iconImg = document.querySelector(".fa-image");
+      const btnImg = document.querySelector(".photoModal button");
+      const pFile = document.querySelector(".photoModal p");
+      const imgFile = document.createElement("img");
 
- 
+      // Affichage de l'image après l'envoie d'un fichier
+
+      fileBtn.addEventListener("click", () => {
+        fileInput.click();
+        fileInput.addEventListener("change", () => {
+          const files = fileInput.files;
+          const file = files[0];
+          if (file) {
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+              imgFile.src = e.target.result;
+              imgFile.classList.add("imgFile");
+              imgFile.style.display = "flex";
+              iconImg.style.display = "none";
+              btnImg.style.display = "none";
+              pFile.style.display = "none";
+            };
+            reader.readAsDataURL(file);
+          }
+          photoModal.appendChild(imgFile);
+        });
+      });
+    });
+    // Utilisation de la méthode POST pour ajoter un projet
+    const formPhotoModal = document.querySelector(".formPhotoModal");
+    const titleForm = document.querySelector(".formPhotoModal #titre");
+    const fileInput = document.getElementById("fileInput");
+    const categoryForm = document.querySelector(".formPhotoModal #category");
+
+    
+
+    formPhotoModal.addEventListener("submit", async (e) => {
+      e.preventDefault();
+  
+      const formData = new FormData();
+      formData.append('title', titleForm.value);
+      formData.append('image', fileInput.files[0]);
+      formData.append('category', categoryForm.value);
+  
+      const token = localStorage.getItem('token');
+  
+      try {
+          const response = await fetch("http://localhost:5678/api/works", {
+              method: "POST",
+              headers: {
+                  'Authorization': 'Bearer ' + token,
+              },
+              body: formData,
+          });
+  
+          if (!response.ok) {
+              throw new Error('HTTP error! Status: ' + response.status);
+          }
+  
+          const data = await response.json();
+          console.log(data);
+          console.log("voici le projet ajouté", data);
+          displayGarageModal();
+          displayVehicules();
+      } catch (error) {
+          console.error("Erreur lors de l'ajout du projet:", error);
+      }
+  });
+    
   }
 }
-
 
 async function displayWorksModal() {
   worksModal.innerHTML = "";
   const works = await fetchWorks();
-  console.log(works)
-  works.forEach(work => {
-      createWorksModal(work);
-  }); 
+  console.log(works);
+  works.forEach((work) => {
+    createWorksModal(work);
+  });
 }
 
 function createWorksModal(work) {
@@ -235,7 +299,7 @@ function createWorksModal(work) {
   suppr.classList.add("fa-solid", "fa-trash-can");
   suppr.id = work.id;
   image.src = work.imageUrl;
-  span.appendChild(suppr)
+  span.appendChild(suppr);
   figure.appendChild(span);
   figure.appendChild(image);
   worksModal.appendChild(figure);
