@@ -214,7 +214,7 @@ button {
 
 #login {
   width: 50%;
-  margin: 200px auto;
+  margin: 150px auto;
 }
 #login > * {
   text-align: center;
@@ -232,6 +232,7 @@ button {
 #login input {
   height: 50px;
   font-size: 1.2em;
+  padding-left: 15px;
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }

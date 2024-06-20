@@ -137,10 +137,11 @@ function connected() {
 
   if (token) {
     logout.innerText = "logout";
+    logout.href = "";
     logout.addEventListener("click", (e) => {
       e.preventDefault;
       token = localStorage.removeItem("token");
-      window.location.href = "../index.html"
+      window.location.href = "../index.html";
     });
     const mode = document.querySelector(".mode");
     mode.classList.add("edition");
@@ -157,6 +158,7 @@ function connected() {
     const spanTextModal = document.querySelector("#portfolio p span");
     spanTextModal.textContent = "Modifier";
     const containerModals = document.querySelector(".containerModals");
+    const btnAjoutPhoto = document.querySelector(".modalWorks button");
 
     pModal.addEventListener("click", () => {
       containerModals.style.display = "block";
@@ -172,8 +174,42 @@ function connected() {
         containerModals.style.display = "none";
       }
     });
-    displayWorksModal();
 
+    btnAjoutPhoto.addEventListener("click", () => {
+      containerModals.style.display = "none";
+      containerAddPhotoModals.style.display = "block";
+    }); 
+
+    displayWorksModal();
+    
+    
+    const containerAddPhotoModals = document.querySelector(".containerAddPhotoModals");
+    const xmarks1 = document.querySelector(".containerAddPhotoModals span .fa-xmark");
+    const leftArrow = document.querySelector(".containerAddPhotoModals span .fa-arrow-left");
+
+    leftArrow.addEventListener("click", () => {
+      containerModals.style.display = "block";
+      containerAddPhotoModals.style.display = "none";
+    });
+
+    xmarks1.addEventListener("click", () => {
+      containerAddPhotoModals.style.display = "none";
+    });
+
+    containerAddPhotoModals.addEventListener("click", (e) => {
+      if (e.target.className == "containerAddPhotoModals") {
+        containerAddPhotoModals.style.display = "none";
+      }
+    });
+
+    const fileBtn = document.querySelector(".photoModal .button");
+    fileBtn.addEventListener("click", () => {
+      const fileInput = document.getElementById("fileInput");
+      fileInput.click();
+  });
+  
+
+ 
   }
 }
 

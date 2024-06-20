@@ -362,7 +362,7 @@ footer nav ul {
 .modalWorks {
   top: 5%;
   background-color: whitesmoke;
-  width: 50%;
+  width: 45%;
   height: 93%;
   border-radius: 5px;
   display: flex;
@@ -375,6 +375,7 @@ footer nav ul {
 
 .modalWorks h2 {
   color: black;
+  font-size: x-large;
   font-weight: normal;
   font-family: inherit;
 }
@@ -390,6 +391,7 @@ footer nav ul {
   position: relative;
   width: 200px;
   border-radius: 60px;
+  cursor: pointer;
 }
 
 .fa-xmark {
@@ -397,6 +399,7 @@ footer nav ul {
   top: 20px;
   right: 20px;
   cursor: pointer;
+  font-size: large;
 }
 
 .worksModal {
@@ -440,7 +443,132 @@ footer nav ul {
   height: 85%;
 }
 
-.ligne{
+.ligne {
   width: 71%;
   border: 1px solid lightgray;
+  position: relative;
+  bottom: 20px;
+}
+
+/* Mise en forme deuxième Modale */
+
+.containerAddPhotoModals {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(128, 128, 128, 0.347);
+}
+
+.modalPhoto {
+  top: 5%;
+  background-color: whitesmoke;
+  width: 45%;
+  height: 93%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  left: 25%;
+}
+
+.fa-arrow-left {
+  position: absolute;
+  font-size: x-large;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+}
+
+.modalPhoto h2 {
+  color: black;
+  font-weight: normal;
+  font-family: inherit;
+  font-size: x-large;
+  position: relative;
+  bottom: 15px;
+}
+
+.modalPhoto button {
+  bottom: 15px;
+  font-family: "Syne";
+  font-weight: 700;
+  padding: 7px;
+  color: white;
+  border: none;
+  background-color: #1d6154;
+  position: relative;
+  width: 200px;
+  border-radius: 60px;
+  cursor: pointer;
+}
+
+.photoModal {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  width: 70%;
+  background-color: lightblue;
+  align-items: center;
+  position: relative;
+  bottom: 10px;
+  height: 30%;
+  border-radius: 3px;
+}
+
+#fileInput{
+  display: none;
+}
+
+.photoModal input {
+  background-color: #929eb6;
+  color: #4f658f;
+  width: 160px;
+}
+
+.fa-image {
+  font-size: -webkit-xxx-large;
+  position: relative;
+  color: #929eb6;
+  bottom: 30px;
+}
+
+.fa-plus {
+  margin-right: 5px;
+}
+
+.formPhotoModal {
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  width: 70%;
+  position: relative;
+  bottom: 30px;
+}
+
+.formPhotoModal label {
+  margin: 2em 0 1em 0;
+}
+
+.formPhotoModal input {
+  height: 50px;
+  font-size: 1.2em;
+  padding-left: 10px;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#selectCategories{
+  height: 50px;
+  font-size: 1.2em;
+  padding-left: 5px;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
