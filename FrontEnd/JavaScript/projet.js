@@ -234,47 +234,8 @@ function connected() {
         });
       });
     });
-    // Utilisation de la méthode POST pour ajoter un projet
-    const formPhotoModal = document.querySelector(".formPhotoModal");
-    const titleForm = document.querySelector(".formPhotoModal #titre");
-    const fileInput = document.getElementById("fileInput");
-    const categoryForm = document.querySelector(".formPhotoModal #category");
-
-    
-
-    formPhotoModal.addEventListener("submit", async (e) => {
-      e.preventDefault();
-  
-      const formData = new FormData();
-      formData.append('title', titleForm.value);
-      formData.append('image', fileInput.files[0]);
-      formData.append('category', categoryForm.value);
-  
-      const token = localStorage.getItem('token');
-  
-      try {
-          const response = await fetch("http://localhost:5678/api/works", {
-              method: "POST",
-              headers: {
-                  'Authorization': 'Bearer ' + token,
-              },
-              body: formData,
-          });
-  
-          if (!response.ok) {
-              throw new Error('HTTP error! Status: ' + response.status);
-          }
-  
-          const data = await response.json();
-          console.log(data);
-          console.log("voici le projet ajouté", data);
-          displayGarageModal();
-          displayVehicules();
-      } catch (error) {
-          console.error("Erreur lors de l'ajout du projet:", error);
-      }
-  });
-    
+    ValiderForm()
+    postWorks();
   }
 }
 
@@ -285,14 +246,13 @@ async function displayWorksModal() {
   works.forEach((work) => {
     createWorksModal(work);
   });
+  deleteWorks();
 }
 
 function createWorksModal(work) {
-  // Sélectionner l'élément de la galerie
-
   // Création l'élément figure
   const figure = document.createElement("figure");
-  // Création l'élément img et définir sa source
+  // Création l'élément img, span et i
   const image = document.createElement("img");
   const span = document.createElement("span");
   const suppr = document.createElement("i");
@@ -304,3 +264,95 @@ function createWorksModal(work) {
   figure.appendChild(image);
   worksModal.appendChild(figure);
 }
+
+
+// Fonction pour valider le formulaire de la modale
+function ValiderForm () {
+  const formPhotoModal = document.querySelector(".formPhotoModal");
+  const titleForm = document.querySelector(".formPhotoModal #titre");
+  const fileInput = document.getElementById("fileInput");
+  const categoryForm = document.querySelector(".formPhotoModal #category");
+  const btnValid = document.querySelector(".formPhotoModal button");
+
+  formPhotoModal.addEventListener("input", () => {
+    if (fileInput.value !== "" && titleForm.value !== "" && categoryForm.value !== "") {
+      btnValid.classList.remove("disabled");
+      btnValid.disabled = true;  
+    } 
+  });
+}
+
+// Fonction pour ajouter un projet via la modale
+function postWorks() {
+  const formPhotoModal = document.querySelector(".formPhotoModal");
+  const titleForm = document.querySelector(".formPhotoModal #titre");
+  const fileInput = document.getElementById("fileInput");
+  const categoryForm = document.querySelector(".formPhotoModal #category");
+  const token = localStorage.getItem("token");
+
+  formPhotoModal.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", titleForm.value);
+    formData.append("image", fileInput.files[0]);
+    formData.append("category", categoryForm.value);
+
+    try {
+      const response = await fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+        body: formData,
+      });
+      
+      if (response.status !== 201) {
+        throw new Error("HTTP error! Status: " + response.status);
+      }
+      
+      if (response.status === 201) {
+        console.log("Ce projet à été ajouté !");
+        displayWorksModal();
+        displayWorks();
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'ajout du projet:", error);
+    }
+  });
+}
+
+// fonction pour supprimer un projet dans la modale
+function deleteWorks() {
+  const trashCan = document.querySelectorAll(".fa-trash-can");
+  console.log(trashCan);
+  const token = localStorage.getItem("token");
+  trashCan.forEach((trash) => {
+    trash.addEventListener("click", async (e) => {
+      const id = trash.id;
+      try {
+        const response = await fetch(`http://localhost:5678/api/works/${id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
+        // Convertir la réponse en JSON
+        if (response.status !== 204) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        if (response.status === 204) {
+          e.preventDefault();
+          console.log("Ce projet à été supprimé !");
+          displayWorksModal();
+          displayWorks();
+        }
+
+        // gestion des erreurs
+      } catch (error) {
+        console.error("Erreur lors de la suppression du projet:", error);
+      }
+    });
+  });
+}
+
