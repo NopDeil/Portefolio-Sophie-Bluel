@@ -196,6 +196,15 @@ nav li {
   margin-top: 5px;
 }
 
+footer nav ul{
+  width: 100%;
+}
+
+footer nav li{
+  padding: 0;
+  font-size: 1em;
+}
+
 #introduction {
   display: flex;
   align-items: center;
@@ -408,10 +417,8 @@ footer nav ul {
   width: 80%;
   height: 65%;
   display: flex;
-  left: 25px;
   overflow-y: scroll;
   align-items: center;
-  position: relative;
   flex-wrap: wrap;
   gap: 10px;
 }
@@ -552,6 +559,7 @@ footer nav ul {
   flex-direction: column;
   height: 35%;
   width: 70%;
+  align-items: center;
   position: relative;
   bottom: 80px;
 }
@@ -563,15 +571,18 @@ footer nav ul {
 .formPhotoModal input {
   height: 50px;
   font-size: 1.2em;
+  width: 97%;
   padding-left: 10px;
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+.formPhotoModal select{
+  width: 100%;
+}
+
 .formPhotoModal button {
-  position: relative;
   top: 65px;
-  left: 140px;
 }
 
 .formPhotoModal .ligne {
@@ -597,6 +608,9 @@ footer nav ul {
   width: 40%;
 }
 
+.reset{
+  display: none;
+}
 .disabled {
   background-color: gray !important;
 }
