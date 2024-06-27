@@ -566,6 +566,7 @@ footer nav ul {
 
 .formPhotoModal label {
   margin: 2em 0 1em 0;
+  width: 100%;
 }
 
 .formPhotoModal input {
@@ -613,4 +614,8 @@ footer nav ul {
 }
 .disabled {
   background-color: gray !important;
+}
+
+.enable{
+  background-color: #1d6154 !important;
 }

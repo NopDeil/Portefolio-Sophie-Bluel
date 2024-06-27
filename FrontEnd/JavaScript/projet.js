@@ -349,8 +349,8 @@ function validerForm() {
       }else if(!fileInput.value &&
       titleForm.value &&
       !categoryForm.value){
-        btnValid.classList.add("disabled");
         btnValid.disabled = true;
+        btnValid.classList.add("disabled");
         return;
       }else if(!fileInput.value &&
         !titleForm.value &&
