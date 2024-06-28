@@ -250,7 +250,7 @@ function connected() {
         formPhotoModal.reset();
       }
     });
-
+    validerForm();
     postWorks();
   }
 }
@@ -329,61 +329,16 @@ function validerForm() {
   const titleForm = document.querySelector(".formPhotoModal #titre");
   const fileInput = document.getElementById("fileInput");
   const categoryForm = document.querySelector(".formPhotoModal #category");
-  const btnValid = document.querySelector(".formPhotoModal button");
+  const btnValid = document.querySelector(".formPhotoModal .btnValid");
 
   formPhotoModal.addEventListener("input", () => {
-    if (
-      !fileInput.value &&
-      !titleForm.value &&
-      !categoryForm.value
-    ){
-      btnValid.classList.add("disabled");
+    if (titleForm.value && categoryForm.value && fileInput.value) {
+      btnValid.classList.add("enabled");
+      btnValid.disabled = false;
+    } else {
+      btnValid.classList.remove("enabled");
       btnValid.disabled = true;
-      return;
-    }else if(fileInput.value &&
-      !titleForm.value &&
-      !categoryForm.value){
-        btnValid.classList.add("disabled");
-        btnValid.disabled = true;
-        return;
-      }else if(!fileInput.value &&
-      titleForm.value &&
-      !categoryForm.value){
-        btnValid.disabled = true;
-        btnValid.classList.add("disabled");
-        return;
-      }else if(!fileInput.value &&
-        !titleForm.value &&
-        categoryForm.value){
-          btnValid.disabled = true;
-          btnValid.classList.add("disabled");
-          return;
-        }else if(fileInput.value &&
-          titleForm.value &&
-          !categoryForm.value){
-            btnValid.disabled = true;
-            btnValid.classList.add("disabled");
-            return;
-          }else if(fileInput.value &&
-            !titleForm.value &&
-            categoryForm.value){
-              btnValid.disabled = true;
-              btnValid.classList.add("disabled");
-              return;
-            }else if(!fileInput.value &&
-              titleForm.value &&
-              categoryForm.value){
-                btnValid.classList.add("disabled");
-                btnValid.disabled = true;
-                return;
-              }else if(fileInput.value &&
-                titleForm.value &&
-                categoryForm.value){
-                  btnValid.classList.remove("disabled");
-                  btnValid.disabled = false;
-                  return;
-                }
-      
+    }
   });
 }
 
