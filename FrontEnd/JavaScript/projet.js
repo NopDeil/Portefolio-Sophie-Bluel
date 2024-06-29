@@ -161,7 +161,7 @@ function connected() {
     const spanTextModal = document.querySelector("#portfolio p span");
     spanTextModal.textContent = "Modifier";
     const containerModals = document.querySelector(".containerModals");
-    const btnAjoutPhoto = document.querySelector(".modalWorks button");
+    const btnAjoutPhoto = document.querySelector(".modalWorks .button");
 
     displayWorksModal();
 
@@ -175,7 +175,8 @@ function connected() {
     const formPhotoModal = document.querySelector(".formPhotoModal");
 
     // Affichage de l'image après l'envoi d'un fichier
-    fileBtn.addEventListener("click", () => {
+    fileBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       fileInput.click();
       fileInput.addEventListener("change", () => {
         const files = fileInput.files;
@@ -293,7 +294,6 @@ function postWorks() {
 
   formPhotoModal.addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append("title", titleForm.value);
     formData.append("image", fileInput.files[0]);

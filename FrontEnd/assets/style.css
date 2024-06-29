@@ -389,6 +389,8 @@ footer nav ul {
   font-size: x-large;
   font-weight: normal;
   font-family: inherit;
+  position: relative;
+  bottom: 25px;
 }
 
 .modalWorks button {
@@ -415,17 +417,16 @@ footer nav ul {
 
 .worksModal {
   width: 80%;
-  height: 65%;
   display: flex;
   overflow-y: scroll;
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
+  margin: 0 0 30px 15px;
 }
 
 .worksModal figure {
   width: 16%;
-  height: 32%;
   position: relative;
 }
 
@@ -618,6 +619,7 @@ footer nav ul {
   height: 100%;
   position: absolute;
   width: 40%;
+  object-fit: cover;
 }
 
 .reset {
